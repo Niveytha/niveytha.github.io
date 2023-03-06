@@ -10,6 +10,6 @@ A game where you play as a detective solving a mystery, gathering clues and inte
 - JavaScript
 
 ## How to Access the Website
-You can access the website by visiting the following URL: https://github.com/Niveytha/niveytha.github.io
+You can access the website by visiting the following URL: https://niveytha.github.io/
 
 ## Features
