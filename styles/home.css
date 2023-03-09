@@ -1,3 +1,8 @@
+@font-face {
+  font-family: scaryFont;
+  src: url(../assets/fonts/StormGust.ttf);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -29,7 +34,7 @@
 .home-text {
   color: rgb(255, 255, 255);
   font-size: 80px;
-  font-family: Creepster;
+  font-family: scaryFont;
   margin-bottom: var(--dl-space-space-threeunits);
 }
 .home-text1 {
