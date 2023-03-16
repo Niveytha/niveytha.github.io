@@ -1,56 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Murder at Midnight</title>
-        <meta property="og:title" content="Murder at Midnight" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="utf-8" />
+  <head>
+    <meta charset="UTF-8">
+    <title>Murder At Midnight</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon"
+      type="image/x-icon" href="assets/images/knife-page-icon.png">
+  </head>
 
-        <style data-tag="reset-style-sheet">
-            html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-          </style>
-        <style data-tag="default-style-sheet">
-            @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
-            html {
-            /* TODO: NOT WORKING */
-              font-family: 'Unbounded', sans-serif;
-              font-size: 16px;
-            }
-            body {
-              font-weight: 400;
-              font-style:normal;
-              text-decoration: none;
-              text-transform: none;
-              letter-spacing: normal;
-              line-height: 1.15;
-              color: var(--dl-color-gray-black);
-              background-color: var(--dl-color-gray-white);
-            }
-        </style>
-        <script src="scripts/main.js"></script>
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="icon"
-            type="image/x-icon" href="assets/detective.png">
-    </head>
+  <body>
+    <div id="container">
+      <p>Murder at Midnight</p>
+      <div class="buttons">
+        <button type="button" onclick="setTimeout(function() {
+          window.location.href= '../final-project-website/index.html'; },
+          1500);">Leave</button>
+        <button type="button" onclick="setTimeout(function() {
+          window.location.href= 'index-copy.html'; },
+          1500);">Play</button>
+      </div>
+    </div>
 
-    <body>
-        <div>
-            <link href="styles/home.css" rel="stylesheet" />
-            <div class="home-container">
-                <div class="home-container1">
-                    <span class="home-text">Murder at Midnight</span>
-                    <span class="home-text1">
-                        Welcome to &apos;Mystery at the Mansion.&apos; You have
-                        been called to a remote countryside mansion to
-                        investigate a gruesome murder. As you step into the
-                        shoes of a seasoned detective, you must explore the
-                        mansion, interrogate suspects, and piece together
-                        clues to uncover the truth. But be warned, danger lurks
-                        around every corner and time is running out. Can
-                        you solve the mystery before it&apos;s too late?
-                    </span>
-                </div>
-            </div>
-        </div>
-    </body>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>

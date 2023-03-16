@@ -1,3 +1,13 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+}
+
 @font-face {
   font-family: scaryFont;
   src: url(../assets/fonts/StormGust.ttf);
@@ -16,8 +26,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #49111c;
+  background-image: url("../assets/images/scary-mansion-2.jpg");
+  background-position: left;
 }
+
 .home-container1 {
   width: 750px;
   height: 650px;
@@ -31,16 +43,18 @@
   justify-content: center;
   background-color: #191919;
 }
+
 .home-text {
   color: rgb(255, 255, 255);
   font-size: 80px;
   font-family: scaryFont;
   margin-bottom: var(--dl-space-space-threeunits);
 }
+
 .home-text1 {
   color: rgb(255, 255, 255);
   width: 600px;
   font-size: 25px;
-  text-align: center;
+  text-align: justify;
   font-family: Arial;
 }

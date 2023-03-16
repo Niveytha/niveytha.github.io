@@ -1,94 +1,527 @@
-:root {
-  --dl-color-gray-500: #595959;
-  --dl-color-gray-700: #999999;
-  --dl-color-gray-900: #d9d9d9;
-  --dl-size-size-large: 144px;
-  --dl-size-size-small: 48px;
-  --dl-color-danger-300: #a22020;
-  --dl-color-danger-500: #bf2626;
-  --dl-color-danger-700: #e14747;
-  --dl-color-gray-black: #000000;
-  --dl-color-gray-white: #ffffff;
-  --dl-size-size-medium: 96px;
-  --dl-size-size-xlarge: 192px;
-  --dl-size-size-xsmall: 16px;
-  --dl-space-space-unit: 16px;
-  --dl-color-primary-100: #003eb3;
-  --dl-color-primary-300: #0074f0;
-  --dl-color-primary-500: #14a9ff;
-  --dl-color-primary-700: #85dcff;
-  --dl-color-success-300: #199033;
-  --dl-color-success-500: #32a94c;
-  --dl-color-success-700: #4cc366;
-  --dl-size-size-xxlarge: 288px;
-  --dl-size-size-maxwidth: 1400px;
-  --dl-radius-radius-round: 50%;
-  --dl-space-space-halfunit: 8px;
-  --dl-space-space-sixunits: 96px;
-  --dl-space-space-twounits: 32px;
-  --dl-radius-radius-radius2: 2px;
-  --dl-radius-radius-radius4: 4px;
-  --dl-radius-radius-radius8: 8px;
-  --dl-space-space-fiveunits: 80px;
-  --dl-space-space-fourunits: 64px;
-  --dl-space-space-threeunits: 48px;
-  --dl-space-space-oneandhalfunits: 24px;
+@font-face {
+  font-family: "Stranger";
+  src: url("https://assets.codepen.io/383755/Molot.woff") format("woff");
 }
-.button {
-  color: var(--dl-color-gray-black);
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-color: var(--dl-color-gray-black);
-  border-width: 1px;
-  border-radius: 4px;
-  background-color: var(--dl-color-gray-white);
+body,
+html {
+  height: 100%;
+  display: grid;
+  font-size: 24px;
+  --x: 0;
+  --y: 0;
+  --total: 0;
 }
-.input {
-  color: var(--dl-color-gray-black);
-  cursor: auto;
-  padding: 0.5rem 1rem;
-  border-color: var(--dl-color-gray-black);
-  border-width: 1px;
-  border-radius: 4px;
-  background-color: var(--dl-color-gray-white);
+
+body {
+  background: url(../assets/images/edited-scary-mansion-2.jpg) no-repeat center
+    center fixed;
+  height: 100vh;
+  overflow: hidden;
 }
-.textarea {
-  color: var(--dl-color-gray-black);
-  cursor: auto;
-  padding: 0.5rem;
-  border-color: var(--dl-color-gray-black);
-  border-width: 1px;
-  border-radius: 4px;
-  background-color: var(--dl-color-gray-white);
-}
-.list {
+body:after {
+  content: "";
+  position: absolute;
   width: 100%;
-  margin: 1em 0px 1em 0px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: inherit;
+  z-index: 3;
+  filter: saturate(0);
+  mix-blend-mode: darken;
+}
+body:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  filter: contrast(270%) brightness(2000%) saturate(0);
+  z-index: 2;
+  background-image: radial-gradient(
+      circle at calc(50% - (var(--x) * -25px)) calc(50% - (var(--y) * -25px)),
+      transparent calc(50px - (var(--total) * -50px)),
+      #000 700px
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.24' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 200px;
+}
+body.loaded #container:before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#container {
+  margin: auto;
+  font-family: "Stranger";
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 500px;
+  position: relative;
+  z-index: 4;
+}
+#container:before {
+  content: "";
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  z-index: 9;
+  transition: opacity 1s ease-in-out;
+}
+#container .buttons {
+  margin-top: 1rem;
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 9;
+  perspective: 100px;
+}
+#container .buttons button {
+  z-index: 3;
+  cursor: pointer;
+  width: 45%;
+  margin: 0 2.5%;
+  font-family: "Stranger";
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  background: transparent;
+  border: 0px solid;
+  padding: 0.5rem;
+  position: relative;
+  background: red;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  letter-spacing: 2px;
+  transition: opacity 0.25s ease-in-out;
+  background: #fff;
+  box-shadow: inset 0 0 20px 20px #fff;
+  -webkit-text-stroke: 1.5px #000;
+}
+#container .buttons button > span.word {
+  transform: translateY(100px);
+}
+#container .buttons button:hover:not(.active) {
+  overflow: visible;
+}
+#container .buttons button.active {
+  overflow: visible;
+}
+#container .buttons button.active > span.word {
+  transform: translateY(100px);
+  transition-delay: 1s;
+}
+#container .buttons button.active > span.word > span {
+  opacity: 0;
+}
+#container .buttons button.active:not(:hover) {
+  overflow: visible;
+  transition-delay: 0s;
+}
+#container .buttons button.active:not(:hover) > span.word {
+  transform: translateY(100px);
+  transition-delay: 1s;
+}
+#container .buttons button.active:not(:hover) > span.word > span {
+  opacity: 0;
+}
+#container .buttons button:not(.active),
+#container .buttons button:not(:hover) {
+  opacity: 0;
+  animation: fadein 1s ease-in-out 1 forwards 0.75s;
+  overflow: hidden;
+  pointer-events: none;
+}
+#container .buttons button:not(.active) > span.word,
+#container .buttons button:not(:hover) > span.word {
+  transform: translateY(0px);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.075);
+  transition-delay: 1.25s;
+}
+#container .buttons button:not(.active) > span.word > span,
+#container .buttons button:not(:hover) > span.word > span {
+  opacity: 1;
+}
+@keyframes fadein {
+  100% {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+#container .buttons button:nth-of-type(2) {
+  color: red;
+  -webkit-text-stroke: 0px #fff;
+}
+#container .buttons button:nth-of-type(2) span.overlay:after {
+  background: radial-gradient(ellipse at center, #000 5px, transparent 5px) -50px
+      50%/15px 20px no-repeat,
+    radial-gradient(ellipse at center, #000 5px, transparent 5px) 120px 50%/15px
+      20px no-repeat,
+    radial-gradient(circle at bottom, #000 15px, transparent 15px) 12.5px 170px/100%
+      100% no-repeat;
+}
+#container .buttons button:nth-of-type(2) span.word:before {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: contrast(170%) brightness(1000%);
+  z-index: 2;
+  background-image: linear-gradient(
+      calc(var(--x) * -4deg),
+      #000,
+      rgba(0, 0, 0, 0)
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.24' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 200px;
+  mix-blend-mode: darken;
+}
+#container .buttons button span.word {
+  position: relative;
+}
+#container .buttons button span.word:before {
+  content: attr(data-word);
+  position: absolute;
+  color: #fff;
+  z-index: 3;
+  transition: opacity 0.25s ease-in-out;
+  transition-delay: 0.5s;
+}
+#container .buttons button span.word > span {
+  display: inline-block;
+}
+#container .buttons button span.overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 2px);
+  top: -1px;
+  left: 0;
+  z-index: 9;
+  filter: contrast(170%) brightness(1000%) saturate(0);
+  background-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0)),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.24' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 300px;
+  mix-blend-mode: darken;
+  transition: 0.5s ease-in-out, box-shadow 0s ease-in-out;
+}
+#container .buttons button span.overlay:after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  filter: blur(1px);
+  left: 0;
+  background: radial-gradient(ellipse at bottom, #000 5px, transparent 5px) -50px
+      50%/15px 25px no-repeat,
+    radial-gradient(ellipse at bottom, #000 5px, transparent 5px) 120px 50%/15px
+      25px no-repeat,
+    radial-gradient(circle at top, #000 15px, transparent 15px) -7.5px 170px/100%
+      100% no-repeat;
+  box-shadow: 0px 55px 0 -35px #fff, 0px 55px 0 -35px #fff;
+  transition: 0.5s ease-in-out;
+  border-radius: 100%;
+}
+#container .buttons button span.overlay:before {
+  content: "";
+  position: absolute;
+  height: 300%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  -webkit-mask: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), #000 50%);
+  -webkit-mask-size: 100% 200%;
+  -webkit-mask-position: 50% 100%;
+  border-radius: 0 0 0 0;
+  transform-origin: bottom;
+  transform: scaleY(0.335);
+}
+#container .buttons button span.word {
+  position: relative;
+  z-index: 10;
+}
+#container .buttons button:before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: -10px;
+  height: calc(100% + 20px);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cstyle%3E .wave%7B stroke:%23FFF; stroke-width:8; stroke-linecap:square; %7D  %3C/style%3E%3C/defs%3E%3Cpattern id='wavePattern' x='0' y='0' width='80' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath fill='none' class='wave' d='M 0 40 Q 20 45 40 40 Q 60 35 80 40' /%3E%3C/pattern%3E%3Crect x='0' y='0' width='100%25' height='100%25' fill='url(%23wavePattern)'%3E%3C/rect%3E%3C/svg%3E")
+      0px 30px/80px 80px repeat-x,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cstyle%3E .wave%7B stroke:%23FFF; stroke-width:8; stroke-linecap:square; %7D  %3C/style%3E%3C/defs%3E%3Cpattern id='wavePattern' x='0' y='0' width='80' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath fill='none' class='wave' d='M 0 40 Q 20 45 40 40 Q 60 35 80 40' /%3E%3C/pattern%3E%3Crect x='0' y='0' width='100%25' height='100%25' fill='url(%23wavePattern)'%3E%3C/rect%3E%3C/svg%3E")
+      0px calc(100% + -30px) / 80px 80px repeat-x;
+  z-index: 9;
+  transition: opacity 0.25s;
+  opacity: 0;
+}
+#container .buttons button:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 50px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cstyle%3E .wave%7B stroke:%23000; stroke-width:6; stroke-linecap:square; %7D  %3C/style%3E%3C/defs%3E%3Cpattern id='wavePattern' x='0' y='0' width='80' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath fill='none' class='wave' d='M 0 40 Q 20 45 40 40 Q 60 35 80 40' /%3E%3C/pattern%3E%3Crect x='0' y='0' width='100%25' height='100%25' fill='url(%23wavePattern)'%3E%3C/rect%3E%3C/svg%3E")
+    0px 0px/80px 80px repeat-x;
+  z-index: -2;
+  top: 30px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  filter: blur(5px);
+}
+#container .buttons button:hover,
+#container .buttons button.active {
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  -webkit-text-stroke: 1.5px transparent;
+  background: rgba(255, 255, 255, 0.75);
+  opacity: 0.75;
+}
+#container .buttons button:hover > .overlay,
+#container .buttons button.active > .overlay {
+  filter: contrast(1) brightness(1) saturate(0);
+}
+#container .buttons button:hover > .overlay:before,
+#container .buttons button.active > .overlay:before {
+  opacity: 1;
+}
+#container .buttons button:hover > span.word,
+#container .buttons button.active > span.word {
+  transition: 0.2s ease-in-out;
+}
+#container .buttons button:hover > span.word:before,
+#container .buttons button.active > span.word:before {
+  opacity: 0;
+  transition-delay: 0s;
+}
+#container .buttons button:hover > span.word > span,
+#container .buttons button.active > span.word > span {
+  animation: bounce 0.75s ease-in-out infinite;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(1),
+#container .buttons button.active > span.word > span:nth-of-type(1) {
+  animation-delay: 0.15s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(2),
+#container .buttons button.active > span.word > span:nth-of-type(2) {
+  animation-delay: 0.05s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(3),
+#container .buttons button.active > span.word > span:nth-of-type(3) {
+  animation-delay: -0.05s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(4),
+#container .buttons button.active > span.word > span:nth-of-type(4) {
+  animation-delay: -0.15s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(5),
+#container .buttons button.active > span.word > span:nth-of-type(5) {
+  animation-delay: -0.25s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(6),
+#container .buttons button.active > span.word > span:nth-of-type(6) {
+  animation-delay: -0.35s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(7),
+#container .buttons button.active > span.word > span:nth-of-type(7) {
+  animation-delay: -0.45s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(8),
+#container .buttons button.active > span.word > span:nth-of-type(8) {
+  animation-delay: -0.55s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(9),
+#container .buttons button.active > span.word > span:nth-of-type(9) {
+  animation-delay: -0.65s;
+}
+#container .buttons button:hover > span.word > span:nth-of-type(10),
+#container .buttons button.active > span.word > span:nth-of-type(10) {
+  animation-delay: -0.75s;
+}
+@keyframes bounce {
+  25% {
+    transform: translateY(3.5px);
+  }
+  75% {
+    transform: translateY(-3.5px);
+  }
+}
+#container .buttons button:hover:after,
+#container .buttons button.active:after {
+  animation: bgmove2 0.5s linear infinite;
+  opacity: 0.25;
+  transform: scaleX(0.85);
+}
+@keyframes bgmove2 {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 80px 0px;
+  }
+}
+#container .buttons button:hover:before,
+#container .buttons button.active:before {
+  opacity: 1;
+  transition-delay: 0s;
+  animation: bgmove 0.5s linear infinite;
+}
+@keyframes bgmove {
+  to {
+    background-position: 80px 30px, -80px calc(100% - 30px);
+  }
+}
+#container .buttons button.active {
+  width: 100px;
+  --shift: 65px;
+  transform: translateX(var(--shift));
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  animation: floataway 2s ease-in-out 1 forwards 0.3s;
+  --direction: 1;
+}
+@keyframes floataway {
+  to {
+    transform: translateX(calc(65px - (var(--direction) * 50vw)))
+      skew(calc(var(--direction) * 5deg)) translateY(var(--drift)) scale(0.75);
+    opacity: 0;
+  }
+}
+#container .buttons button.active:last-of-type {
+  --direction: -1;
+  --shift: -75px;
+}
+#container .buttons button.active:last-of-type .overlay:after {
+  background-position: 30px 30px, 65px 30px, 10px -25px;
+  box-shadow: -65px 55px 0 -35px #fff, 40px 55px 0 -35px #fff;
+}
+#container .buttons button.active:last-of-type .overlay:before {
+  box-shadow: inset -10px 0 20px 20px #fff, inset 10px 20px 20px -10px #000;
+}
+#container .buttons button.active > span.word {
+  opacity: 0;
+}
+#container .buttons button.active .overlay {
+  box-shadow: inset 0 0 25px 50px #fff;
+}
+#container .buttons button.active .overlay:after {
+  background-position: 15px 30px, 65px 30px, -2.5px 65px;
+  transition-delay: 0.35s;
+  opacity: 1;
+  box-shadow: -40px 55px 0 -35px #fff, 60px 55px 0 -35px #fff;
+  animation: lookaway 2s ease-in-out 1 forwards 0s;
+}
+@keyframes lookaway {
+  to {
+    transform: translateX(calc(-15px * var(--direction)));
+  }
+}
+#container .buttons button.active .overlay:before {
+  transition-delay: 0.15s;
+  box-shadow: inset 10px 0 20px 20px #fff, inset -10px 20px 20px -10px #000;
+  border-radius: 100px 100px 0 0;
+  -webkit-mask-position: 50% 50%;
+  bottom: 75%;
+  transform: scaleY(1);
+}
+#container > p {
   display: block;
-  padding: 0px 0px 0px 1.5rem;
-  list-style-type: none;
-  list-style-position: outside;
+  text-align: center;
+  max-width: 400px;
+  margin: 0px auto;
+  clear: both;
+  font-size: 3rem;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 3;
+  transform: scale(1.25);
 }
-.list-item {
-  display: list-item;
+#container > p > span {
+  perspective: 100px;
+  position: relative;
+  color: red;
+  z-index: 3;
+  perspective: 300px;
+  perspective-origin: calc(((var(--x) * -200px)) + 150px) -1rem;
 }
-.teleport-show {
-  display: flex !important;
-  transform: none !important;
+#container > p > span:last-of-type:after {
+  background-image: linear-gradient(
+      calc(var(--x) * 4deg),
+      #000,
+      rgba(0, 0, 0, 0)
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.24' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
-.Content {
-  font-size: 16px;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: 1.15;
-  text-transform: none;
-  text-decoration: none;
+#container > p > span:after {
+  position: absolute;
+  content: attr(data-word);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: contrast(170%) brightness(1000%);
+  z-index: 2;
+  background-image: linear-gradient(
+      calc(var(--x) * -4deg),
+      #000,
+      rgba(0, 0, 0, 0)
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.24' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 200px;
+  mix-blend-mode: darken;
 }
-.Heading {
-  font-size: 32px;
-  font-family: Inter;
-  font-weight: 700;
-  line-height: 1.15;
-  text-transform: none;
-  text-decoration: none;
+#container > p > span:before {
+  -webkit-text-fill-color: #222;
+  transform-style: preserve-3d;
+  content: attr(data-word);
+  color: #222;
+  position: absolute;
+  z-index: -1;
+  transform-origin: 50% calc(100% - 0.5rem);
+  transform: rotateX(90deg) scaleY(calc(var(--y) + 3));
+  opacity: 0.25;
+}
+#container > p > span > span {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+#container > p > span.word {
+  display: inline-block;
+}
+#container > p > span.word.word-0 {
+  display: block;
+  transform: scaleX(1.275);
+  margin: 0 0 1rem;
+}
+#container > p > span.word.word-1 {
+  font-size: 2rem;
+  vertical-align: super;
+  transform: translateY(-1.85rem);
+}
+#container > p > span.word.word-2 {
+  transform-origin: bottom;
+  transform: scaleY(1.85);
+}
+
+span {
+  font-size: 30px;
+  text-align: justify;
 }
