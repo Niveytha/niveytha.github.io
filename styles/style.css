@@ -520,8 +520,3 @@ body.loaded #container:before {
   transform-origin: bottom;
   transform: scaleY(1.85);
 }
-
-span {
-  font-size: 30px;
-  text-align: justify;
-}

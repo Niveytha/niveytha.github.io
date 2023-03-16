@@ -35,7 +35,7 @@
             href="https://fonts.googleapis.com/css2?family=Creepster:wght@400&amp;display=swap"
             data-tag="font"
             />
-        <link rel="stylesheet" href="../styles/style.css" />
+        <link rel="stylesheet" href="../styles/styles.css" />
     </head>
     <body>
         <div>
@@ -47,10 +47,13 @@
                         <div class="page1-container3">
                             <span class="page1-text">Do you dare?</span>
                             <div class="page1-container4">
-                                <button class="page1-button button">Accept Case</button>
+                                <button type="button" class="page1-button
+                                    button">Decline Case</button>
                                 <button type="button" class="page1-button1
-                                    button">
-                                    Decline Case
+                                    button" onclick="setTimeout(function() {
+                                    window.location.href=
+                                    'page-2.html'; });">
+                                    Accept Case
                                 </button>
                             </div>
                         </div>
