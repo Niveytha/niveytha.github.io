@@ -75,6 +75,8 @@ body.loaded #container:before {
   z-index: 9;
   transition: opacity 1s ease-in-out;
 }
+
+/* !buttons */
 #container .buttons {
   margin-top: 1rem;
   width: inherit;
