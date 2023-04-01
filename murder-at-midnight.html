@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE HTML>
 <html>
-
 	<!-- HEADER -->
 	<head>
-
 		<meta charset="UTF-8">
-
 		<title>Murder at Midnight!</title>
-
+		<link rel="icon"
+			type="image/x-icon" href="assets/images/knife-page-icon.png">
+		<link rel="stylesheet" href="styles/game.css">
+		<script defer type="text/javascript" src="scripts/game.js">
+			</script>
 		<script type="text/bitsyGameData" id="exportedGameData">
 Murder at Midnight!
 
@@ -175,6 +176,8 @@ ROOM 0
 2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a
 2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a,2a
 NAME Detective's Office
+EXT 8,13 1 7,13
+EXT 7,13 1 7,13
 PAL 0
 
 ROOM 1
@@ -195,6 +198,8 @@ ROOM 1
 1l,1k,1i,1h,1i,1j,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l
 1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l,1l
 NAME Mansion Entrance
+EXT 15,14 2 0,14
+EXT 15,15 2 0,15
 PAL 0
 
 ROOM 2
@@ -215,6 +220,10 @@ ROOM 2
 5a,5a,5a,5a,5w,5z,66,5x,68,5x,65,67,5a,65,64,5a
 5x,5x,5x,5z,66,65,5a,62,5a,64,5a,5a,62,5a,67,66
 NAME Garden
+EXT 0,14 1 15,14 FX slide_r
+EXT 12,6 3 11,12
+EXT 12,6 3 10,12 FX tunnel
+EXT 0,15 1 15,15 FX slide_r
 PAL 0
 
 ROOM 3
@@ -248,6 +257,8 @@ ITM b 13,4
 ITM c 12,3
 ITM d 12,5
 ITM e 11,4
+EXT 11,12 2 12,6 FX tunnel
+EXT 10,12 2 12,6
 PAL 0
 
 TIL 10
@@ -3437,24 +3448,15 @@ POS 3 8,5
 COL 2
 
 SPR A
-0,8,8,8,8,0,0,0
-0,0,8,8,8,8,8,0
-8,8,8,8,2,2,2,0
-0,8,5,8,9,5,9,0
-0,0,12,8,5,8,5,0
-0,5,7,12,8,12,0,0
-0,7,7,13,8,13,7,0
-0,13,13,13,0,13,13,0
->
-0,8,8,8,8,0,0,0
-0,0,8,8,8,8,8,0
-8,8,8,8,2,2,2,0
-0,8,5,8,9,5,9,0
-0,0,12,8,5,8,5,0
-0,5,7,12,8,12,0,0
-0,7,7,13,8,13,7,0
-0,13,13,13,0,13,13,0
-POS 3 10,12
+0,0,0,8,8,8,8,0
+0,8,8,8,8,8,0,0
+0,2,2,2,8,8,8,8
+0,9,5,9,8,5,8,0
+0,5,8,5,8,12,0,0
+0,0,12,8,12,7,5,0
+0,7,13,8,13,7,7,0
+0,13,13,0,13,13,13,0
+POS 0 12,10
 COL 2
 
 SPR a
@@ -3495,15 +3497,17 @@ NAME Maid
 COL 2
 
 SPR d
-0,16,0,0,16,16,0,0
-0,16,0,16,16,16,16,0
-0,16,0,15,21,15,21,0
-0,21,15,21,21,21,15,15
-0,15,15,15,15,15,15,15
-0,0,0,15,15,15,21,15
-0,0,0,16,16,16,16,0
-0,0,0,16,0,0,16,0
+55,16,55,55,16,16,55,55
+55,16,55,16,16,16,16,55
+55,16,55,15,21,15,21,55
+55,21,15,21,21,21,15,15
+55,15,15,15,15,15,15,15
+55,55,55,15,15,15,21,15
+55,55,55,16,16,16,16,55
+55,55,55,16,55,55,16,55
 NAME Gardener
+DLG 16
+POS 3 12,6
 COL 2
 
 SPR e
@@ -4077,6 +4081,10 @@ this is fresh dog poo
 """
 NAME dog poo dialog
 
+DLG 16
+this is the gardener
+NAME Gardener dialog
+
 DLG a
 "go right to visit garden"
 NAME signboard bottom 1 dialog
@@ -4187,11 +4195,6 @@ NAME shovel dialog 3
 VAR a
 42
 </script>
-
-		<link rel="stylesheet" href="styles/game.css">
-		<script defer type="text/javascript" src="scripts/game.js">
-        </script>
-		<!-- SCRIPTS -->
 
 		<!-- store default font in separate script tag for back compat-->
 		<script type="text/bitsyFontData" id="ascii_small">
@@ -6502,12 +6505,15 @@ CHAR 255
 000000
 000000
 </script>
+
 	</head>
+
 
 	<!-- DOCUMENT BODY -->
 	<body onload='startExportedGame()'>
 		<!-- GAME CANVAS -->
 		<canvas id='game'></canvas>
 	</body>
+
 
 </html>
