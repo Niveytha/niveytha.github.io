@@ -290,7 +290,7 @@ body.loaded #container:before {
 #container .buttons button:hover,
 #container .buttons button.active {
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  color: rgba(255, 255, 255, 0.75);
+  color: red;
   -webkit-text-stroke: 1.5px transparent;
   background: rgba(255, 255, 255, 0.75);
   opacity: 0.75;
