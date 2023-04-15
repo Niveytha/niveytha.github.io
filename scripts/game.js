@@ -3262,24 +3262,24 @@ function Script() {
     };
 
     /*
-		ParseDialog():
-		This function adds {print} nodes and linebreak {br} nodes to display text,
-		interleaved with bracketed code nodes for functions and flow control,
-		such as text effects {shk} {wvy} or sequences like {cycle} and {shuffle}.
-		The parsing of those code blocks is handled by ParseCode.
+ParseDialog():
+This function adds {print} nodes and linebreak {br} nodes to display text,
+interleaved with bracketed code nodes for functions and flow control,
+such as text effects {shk} {wvy} or sequences like {cycle} and {shuffle}.
+The parsing of those code blocks is handled by ParseCode.
 
-		Note on parsing newline characters:
-		- there should be an implicit linebreak {br} after each dialog line
-		- a "dialog line" is defined as any line that either:
-			- 1) contains dialog text (any text outside of a code block)
-			- 2) is entirely empty (no text, no code)
-			- *or* 3) contains a list block (sequence, cycle, shuffle, or conditional)
-		- lines *only* containing {code} blocks are not dialog lines
+Note on parsing newline characters:
+- there should be an implicit linebreak {br} after each dialog line
+- a "dialog line" is defined as any line that either:
+    - 1) contains dialog text (any text outside of a code block)
+    - 2) is entirely empty (no text, no code)
+    - *or* 3) contains a list block (sequence, cycle, shuffle, or conditional)
+- lines *only* containing {code} blocks are not dialog lines
 
-		NOTE TO SELF: all the state I'm storing in here feels like
-		evidence that the parsing system kind of broke down at this point :(
-		Maybe it would feel better if I move into the "state" object
-	*/
+NOTE TO SELF: all the state I'm storing in here feels like
+evidence that the parsing system kind of broke down at this point :(
+Maybe it would feel better if I move into the "state" object
+*/
     function ParseDialog(state) {
       var curLineNodeList = [];
       var curText = "";
@@ -3386,12 +3386,12 @@ function Script() {
     }
 
     /*
-		ParseConditional():
-		A conditional contains a list of conditions that can be
-		evaluated to true or false, followed by more dialog
-		that will be evaluated if the condition is true. The first
-		true condition is the one that gets evaluated.
-	*/
+ParseConditional():
+A conditional contains a list of conditions that can be
+evaluated to true or false, followed by more dialog
+that will be evaluated if the condition is true. The first
+true condition is the one that gets evaluated.
+*/
     function ParseConditional(state) {
       var conditionStrings = [];
       var resultStrings = [];
@@ -3530,23 +3530,23 @@ function Script() {
     }
 
     /*
-		ParseSequence():
-		Sequence nodes contain a list of dialog block nodes. The order those
-		nodes are evaluated is determined by the type of sequence:
-		- sequence: each child node evaluated once in order
-		- cycle: repeats from the beginning after all nodes evaluate
-		- shuffle: evaluate in a random order
+ParseSequence():
+Sequence nodes contain a list of dialog block nodes. The order those
+nodes are evaluated is determined by the type of sequence:
+- sequence: each child node evaluated once in order
+- cycle: repeats from the beginning after all nodes evaluate
+- shuffle: evaluate in a random order
 
-		Each item in a sequence is sepearated by a "-" character.
-		The seperator must come at the beginning of the line,
-		but may be preceded by whitespace (in any amount).
+Each item in a sequence is sepearated by a "-" character.
+The seperator must come at the beginning of the line,
+but may be preceded by whitespace (in any amount).
 
-		About whitespace: Whitespace at the start of a line
-		is ignored if it less than or equal to the count of
-		whitespace that preceded the list separator ("-") at
-		the start of that item. (The count also includes the
-		seperator and the extra space after the seperator.)
-	 */
+About whitespace: Whitespace at the start of a line
+is ignored if it less than or equal to the count of
+whitespace that preceded the list separator ("-") at
+the start of that item. (The count also includes the
+seperator and the extra space after the seperator.)
+*/
     function ParseSequence(state, sequenceType) {
       var itemStrings = [];
       var curItemIndex = -1; // -1 indicates not reading an item yet
